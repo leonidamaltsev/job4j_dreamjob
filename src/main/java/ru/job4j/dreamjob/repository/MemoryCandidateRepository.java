@@ -2,7 +2,6 @@ package ru.job4j.dreamjob.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.model.Vacancy;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -15,7 +14,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
 
     private static final MemoryCandidateRepository INSTANCE = new MemoryCandidateRepository();
 
-    private int nextId =1;
+    private int nextId = 1;
 
     private final Map<Integer, Candidate> candidates = new HashMap<>();
 
@@ -27,7 +26,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
         save(new Candidate(0, "Denis Dobrov", "Middle+ Java Developer", LocalDateTime.now()));
     }
 
-    public static MemoryCandidateRepository getInstance(){
+    public static MemoryCandidateRepository getInstance() {
         return INSTANCE;
     }
 
