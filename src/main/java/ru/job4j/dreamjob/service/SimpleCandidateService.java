@@ -17,7 +17,6 @@ public class SimpleCandidateService implements CandidateService {
         return INSTANCE;
     }
 
-
     @Override
     public Candidate save(Candidate candidate) {
         return candidateRepository.save(candidate);
