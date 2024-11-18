@@ -20,12 +20,12 @@ public class MemoryVacancyRepository implements VacancyRepository {
     private final ConcurrentMap<Integer, Vacancy> vacancies = new ConcurrentHashMap<>();
 
     private MemoryVacancyRepository() {
-        save(new Vacancy(0, "Intern Java Developer", "Internship for Java Developer", LocalDateTime.now()));
-        save(new Vacancy(0, "Junior Java Developer", "Junior position for Java Developer", LocalDateTime.now()));
-        save(new Vacancy(0, "Junior+ Java Developer", "Junior+ position for Java Developer", LocalDateTime.now()));
-        save(new Vacancy(0, "Middle Java Developer", "Middle position for Java Developer", LocalDateTime.now()));
-        save(new Vacancy(0, "Middle+ Java Developer", "Middle+ position for Java Developer", LocalDateTime.now()));
-        save(new Vacancy(0, "Senior Java Developer", "Senior position for Java Developer", LocalDateTime.now()));
+        save(new Vacancy(0, "Intern Java Developer", "Internship for Java Developer", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Junior Java Developer", "Junior position for Java Developer", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Junior+ Java Developer", "Junior+ position for Java Developer", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Middle Java Developer", "Middle position for Java Developer", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Middle+ Java Developer", "Middle+ position for Java Developer", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Senior Java Developer", "Senior position for Java Developer", LocalDateTime.now(), true));
     }
 
     @Override
@@ -43,8 +43,11 @@ public class MemoryVacancyRepository implements VacancyRepository {
     @Override
     public boolean update(Vacancy vacancy) {
         return vacancies.computeIfPresent(vacancy.getId(),
-                (id, oldVacancy) -> new Vacancy(oldVacancy.getId(), vacancy.getTitle(),
-                        vacancy.getDescription(), oldVacancy.getCreationDate())) != null;
+                (id, oldVacancy) -> new Vacancy(oldVacancy.getId(),
+                        vacancy.getTitle(),
+                        vacancy.getDescription(),
+                        vacancy.getCreationDate(),
+                        vacancy.getVisible())) != null;
     }
 
     @Override
